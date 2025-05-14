@@ -5,11 +5,15 @@ function updateClock() {
     const utc = now.getTime() + now.getTimezoneOffset() * 60000;
     const bdTime = new Date(utc + (6 * 60 * 60 * 1000));
 
-    const hours = String(bdTime.getHours()).padStart(2, '0');
+    let hours = bdTime.getHours();
     const minutes = String(bdTime.getMinutes()).padStart(2, '0');
     const seconds = String(bdTime.getSeconds()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
 
-    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+    hours = hours % 12 || 12; // Convert to 12-hour format
+    hours = String(hours).padStart(2, '0');
+
+    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
 }
 
 setInterval(updateClock, 1000);
