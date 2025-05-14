@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'DigitalFont';
+    src: url("../fonts/digital-7.ttf") format("truetype");
+}
+
+* {
+    font-family: 'DigitalFont';
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #111;
+    color: #00ffcc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.clock {
+    font-size: 20vw;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.label {
+    font-size: 2vw;
+    color: #888;
+    margin-top: 20px;
+}
+
+#fullscreen-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #00ffcc;
+    color: #111;
+    border: none;
+    font-size: 1vw;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+}
