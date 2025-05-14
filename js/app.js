@@ -16,8 +16,11 @@ function updateClock() {
     document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
 }
 
-setInterval(updateClock, 1000);
-updateClock(); // initial call
+function startClock() {
+    updateClock();
+    setTimeout(startClock, 1000 - (Date.now() % 1000)); // Adjust for exact timing
+}
+startClock();
 
 
 const fullscreentoggle = document.getElementById('fullscreen-btn');
