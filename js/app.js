@@ -80,14 +80,14 @@ colorPicker.addEventListener('input', (e) => {
 });
 
 // Toggle light/dark theme & save
-themeToggle.addEventListener('click', () => {
-    darkTheme = !darkTheme;
-    if (darkTheme) {
-        document.documentElement.style.setProperty('--bg-color', '#111');
-        document.documentElement.style.setProperty('--text-color', colorPicker.value);
-    } else {
-        document.documentElement.style.setProperty('--bg-color', '#fff');
-        document.documentElement.style.setProperty('--text-color', '#333');
-    }
-    localStorage.setItem('themeDark', darkTheme);
-});
+// themeToggle.addEventListener('click', () => {
+//     darkTheme = !darkTheme;
+//     if (darkTheme) {
+//         document.documentElement.style.setProperty('--bg-color', '#111');
+//         document.documentElement.style.setProperty('--text-color', colorPicker.value);
+//     } else {
+//         document.documentElement.style.setProperty('--bg-color', '#fff');
+//         document.documentElement.style.setProperty('--text-color', '#333');
+//     }
+//     localStorage.setItem('themeDark', darkTheme);
+// });

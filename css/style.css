@@ -38,8 +38,8 @@ body {
 
 #fullscreen-btn {
     position: absolute;
-    top: 20px;
-    right: 115px;
+    bottom: 20px;
+    right: 20px;
     background-color: var(--text-color, #00ffcc);
     color: #111;
     border: none;
@@ -92,7 +92,7 @@ body {
 .color-picker {
     cursor: pointer;
     width: 40px;
-    height: 30px;
+    height: 40px;
     border: none;
     padding: 0;
     background: none;
