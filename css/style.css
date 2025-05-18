@@ -7,21 +7,26 @@
     font-family: 'DigitalFont';
 }
 
+
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #111;
-    color: #00ffcc;
+    background-color: var(--bg-color, #111);
+    color: var(--text-color, #00ffcc);
     display: flex;
+    flex-direction: column;  /* to allow controls above clock */
     align-items: center;
     justify-content: center;
     height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .clock {
     font-size: 15vw;
     text-align: center;
     letter-spacing: 2px;
+    user-select: none;
 }
 
 .label {
@@ -33,17 +38,61 @@ body {
 #fullscreen-btn {
     position: absolute;
     top: 20px;
-    right: 20px;
-    background-color: #00ffcc;
+    left: 20px; /* changed to left so it doesn’t overlap controls */
+    background-color: var(--text-color, #00ffcc);
     color: #111;
     border: none;
-    font-size: 1vw;
+    font-size: 20px;
     cursor: pointer;
     border-radius: 5px;
     width: 40px;
     height: 40px;
-    font-size: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#fullscreen-btn:hover {
+    background-color: #00ddb3;
+}
+
+.controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 10;
+}
+
+.controls label {
+    font-size: 14px;
+    color: inherit; /* inherit from body text color */
+}
+
+.theme-toggle {
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    color: inherit;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* .theme-toggle:hover {
+    background-color: currentColor;
+    color: var(--bg-color, #111);
+} */
+
+.color-picker {
+    cursor: pointer;
+    width: 40px;
+    height: 30px;
+    border: none;
+    padding: 0;
+    background: none;
+    border-radius: 6px;
 }

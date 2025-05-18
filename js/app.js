@@ -1,3 +1,10 @@
+const clock = document.getElementById('clock');
+const colorPicker = document.getElementById('colorPicker');
+const themeToggle = document.getElementById('themeToggle');
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+let darkTheme = true;
+
 function updateClock() {
     const now = new Date();
 
@@ -13,25 +20,74 @@ function updateClock() {
     hours = hours % 12 || 12; // Convert to 12-hour format
     hours = String(hours).padStart(2, '0');
 
-    document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+    clock.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
 }
 
 function startClock() {
     updateClock();
-    setTimeout(startClock, 1000 - (Date.now() % 1000)); // Adjust for exact timing
+    setTimeout(startClock, 1000 - (Date.now() % 1000)); // Precise 1-sec interval
 }
+
+// Load saved settings or use defaults
+function loadSettings() {
+    const savedColor = localStorage.getItem('clockColor');
+    const savedTheme = localStorage.getItem('themeDark');
+
+    if (savedColor) {
+        colorPicker.value = savedColor;
+        document.documentElement.style.setProperty('--text-color', savedColor);
+    } else {
+        // default clock color
+        document.documentElement.style.setProperty('--text-color', colorPicker.value);
+    }
+
+    if (savedTheme !== null) {
+        darkTheme = savedTheme === 'true';
+        if (darkTheme) {
+            document.documentElement.style.setProperty('--bg-color', '#111');
+            document.documentElement.style.setProperty('--text-color', colorPicker.value);
+        } else {
+            document.documentElement.style.setProperty('--bg-color', '#fff');
+            document.documentElement.style.setProperty('--text-color', '#333');
+        }
+    } else {
+        // default theme
+        document.documentElement.style.setProperty('--bg-color', '#111');
+    }
+}
+
+loadSettings();
 startClock();
 
-
-const fullscreentoggle = document.getElementById('fullscreen-btn');
-
-fullscreentoggle.addEventListener('click', function () {
+// Fullscreen toggle
+fullscreenBtn.addEventListener('click', () => {
     if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
+        document.documentElement.requestFullscreen().catch(err => {
+            alert(`Fullscreen error: ${err.message}`);
+        });
     } else {
         if (document.exitFullscreen) {
             document.exitFullscreen();
         }
     }
-}
-);
+});
+
+// Change clock color dynamically & save
+colorPicker.addEventListener('input', (e) => {
+    const color = e.target.value;
+    document.documentElement.style.setProperty('--text-color', color);
+    localStorage.setItem('clockColor', color);
+});
+
+// Toggle light/dark theme & save
+themeToggle.addEventListener('click', () => {
+    darkTheme = !darkTheme;
+    if (darkTheme) {
+        document.documentElement.style.setProperty('--bg-color', '#111');
+        document.documentElement.style.setProperty('--text-color', colorPicker.value);
+    } else {
+        document.documentElement.style.setProperty('--bg-color', '#fff');
+        document.documentElement.style.setProperty('--text-color', '#333');
+    }
+    localStorage.setItem('themeDark', darkTheme);
+});
