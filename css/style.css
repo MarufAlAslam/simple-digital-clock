@@ -15,7 +15,8 @@ body {
     background-color: var(--bg-color, #111);
     color: var(--text-color, #00ffcc);
     display: flex;
-    flex-direction: column;  /* to allow controls above clock */
+    flex-direction: column;
+    /* to allow controls above clock */
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -38,7 +39,7 @@ body {
 #fullscreen-btn {
     position: absolute;
     top: 20px;
-    left: 20px; /* changed to left so it doesn’t overlap controls */
+    right: 115px;
     background-color: var(--text-color, #00ffcc);
     color: #111;
     border: none;
@@ -69,7 +70,8 @@ body {
 
 .controls label {
     font-size: 14px;
-    color: inherit; /* inherit from body text color */
+    color: inherit;
+    /* inherit from body text color */
 }
 
 .theme-toggle {
